@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class KarakterKontrol : MonoBehaviour
 {
-    // Ad Soyad: 
-    // Öğrenci Numarası: 
+    // Ad Soyad: Mahmut Efe Ün
+    // Öğrenci Numarası: 232011029
 
 
     // Soru 1: Karakteri yön tuşları ile hareket ettiren kodu, HareketEt fonksiyonu içerisine yazınız.
@@ -23,6 +23,7 @@ public class KarakterKontrol : MonoBehaviour
     public float ziplamaGucu = 5f;
 
     public int skor = 0;
+    private float _speed;
 
     void Start()
     {
@@ -32,6 +33,28 @@ public class KarakterKontrol : MonoBehaviour
     void Update()
     {
         // Yazdığınız metodları çağırınız.
+
+        
+        void MoveCharacter()
+        {
+
+            if (Input.GetKey(KeyCode.A))
+            {
+                _playerRigidbody.AddForce(UnityEngine.Vector2.left * (_speed * Time.deltaTime));
+            }
+
+            else if (Input.GetKey(KeyCode.D))
+            {
+                _playerRigidbody.AddForce(UnityEngine.Vector2.right * (_speed * Time.deltaTime));
+            }
+
+
+
+
+        }
+
+
+
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -42,7 +65,7 @@ public class KarakterKontrol : MonoBehaviour
     void Zipla()
     {
         // Space tuşuna basınca karakter zıplamalı ancak aşağıdaki kod hatalı.
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Space))
         {
             Vector3 ziplamaYonu = new Vector3(UnityEngine.Random.Range(-1f, 1f), 1, UnityEngine.Random.Range(-1f, 1f));
             karakterRb.AddForce(ziplamaYonu * (ziplamaGucu / 2), ForceMode2D.Impulse);
